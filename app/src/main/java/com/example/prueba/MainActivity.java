@@ -15,58 +15,58 @@ import okhttp3.WebSocketListener;
 
 
 public class MainActivity extends AppCompatActivity {
-    //Prueba1
-    //Segundo Cambio
-    //TERCER COMENTARIO JJ //
-    //joseph//
-    private VideoView videoView;
-    private Button playButton;
-    private OkHttpClient client;
-    private WebSocket webSocket;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+ private WebSocketClient webSocketClient;
 
-        videoView = findViewById(R.id.videoView);
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
 
-        playButton = findViewById(R.id.PlayButton);
+            Button connectButton = findViewById(R.id.connectButton);
 
-        client = new OkHttpClient();
-        // Establecer la conexión WebSocket
-        playButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Enviar un mensaje al servidor para iniciar la reproducción de video
-                //  webSocket.send("start_video");
-                Toast.makeText(MainActivity.this, "SI SIRVE", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        // Configura la conexión WebSocket
-        Request request = new Request.Builder().url("ws://localhost:8765").build();
-        WebSocketListener webSocketListener = new WebSocketListener() {
-            @Override
-            public void onOpen(WebSocket webSocket, okhttp3.Response response) {
-                // La conexión WebSocket se ha establecido
-            }
-            @Override
-            public void onMessage(WebSocket webSocket, String text) {
-                if (text.equals("start_video")) {
-                    // Reproducir el video cuando se recibe el mensaje "start_video"
-                    playVideo();
+            connectButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    connectToWebSocket();
                 }
-            }
-        };
-        webSocket = client.newWebSocket(request, webSocketListener);
-    }
+            });
+        }
 
-    private void playVideo() {
-        // Cambia el URI del video para que apunte a tu recurso de video local o una URL remota
-        String videoPath = "android.resource://" + getPackageName() + "/" + R.raw.video;
-        Uri uri =   Uri.parse(videoPath);
-        videoView.setVideoPath(videoPath);
-        videoView.start();
-    }
-}
+        private void connectToWebSocket() {
+            try {
+                URI uri = new URI("ws://localhost:8765");
+                webSocketClient = new WebSocketClient(uri) {
+                    @Override
+                    public void onOpen(ServerHandshake serverHandshake) {
+                        // La conexión se ha establecido con éxito
+                    }
+
+                    @Override
+                    public void onMessage(String s) {
+                        // Se recibió un mensaje del servidor
+                    }
+
+                    @Override
+                    public void onClose(int i, String s, boolean b) {
+                        // La conexión se cerró
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        // Ocurrió un error
+                    }
+                };
+
+                webSocketClient.connect();
+                sendMessage("start_video"); // Envía el mensaje al presionar el botón
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
+        }
+
+        private void sendMessage(String message) {
+            if (webSocketClient != null && webSocketClient.isOpen()) {
+                webSocketClient.send(message);
+            }
+        }
