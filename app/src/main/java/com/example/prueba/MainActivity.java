@@ -17,9 +17,9 @@ import okhttp3.WebSocketListener;
 public class MainActivity extends AppCompatActivity {
 // DAVID //
     private VideoView videoView;
-    private Button playButton;
-    private OkHttpClient client;
-    private WebSocket webSocket;
+    private Button btnConnect;
+    private Button btnSend;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +28,10 @@ public class MainActivity extends AppCompatActivity {
 
         videoView = findViewById(R.id.videoView);
 
-        playButton = findViewById(R.id.PlayButton);
+        btnConnect = findViewById(R.id.btnConnect);
+        btnSend = findViewById(R.id.btnSend);
 
-        client = new OkHttpClient();
+
         // Establecer la conexión WebSocket
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Configura la conexión WebSocket
-        Request request = new Request.Builder().url("ws://localhost:8765").build();
+        Request request = new Request.Builder().url("ws://192.168.56.1").build();
         WebSocketListener webSocketListener = new WebSocketListener() {
             @Override
             public void onOpen(WebSocket webSocket, okhttp3.Response response) {
