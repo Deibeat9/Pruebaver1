@@ -12,23 +12,19 @@
     <VideoView
         android:id="@+id/videoView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="500dp"
         android:visibility="visible" />
     <Button
-        android:visibility="gone"
         android:id="@+id/btnConnect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Conectar al WebSocket" />
 
     <Button
-        android:visibility="gone"
         android:id="@+id/btnSend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="259dp"
-        android:layout_marginBottom="607dp"
-        android:text="start Video"/>
+        android:text="start Video" />
 </LinearLayout>
