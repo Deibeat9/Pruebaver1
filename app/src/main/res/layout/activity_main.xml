@@ -4,21 +4,152 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
 
+    <Button
+        android:id="@+id/Btn_On_Off"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:onClick="OncLicK"
+        android:textSize="30dp"></Button>
+
+    <LinearLayout
+        android:id="@+id/Linear_URL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="375dp"
+            android:layout_height="35dp"
+            android:gravity="center"
+            android:text=" Cambio de URL "
+            android:textColor="#000000"
+            android:textSize="18dp"
+            android:textStyle="bold"></TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginHorizontal="15dp"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+
+            <TextView
+                android:layout_width="114dp"
+                android:layout_height="34dp"
+                android:gravity="center"
+                android:inputType="textPersonName"
+                android:text="URL Actual:"
+                android:textColor="#000000"
+                android:textSize="14dp" />
+
+
+            <LinearLayout
+                android:layout_width="256dp"
+                android:layout_height="36dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/Txt_IPServidor"
+                    android:layout_width="251dp"
+                    android:layout_height="34dp"
+                    android:background="@drawable/ovalo"
+                    android:gravity="center"
+                    android:hint="http://132.248.51.128:8011/"
+                    android:textSize="12dp"
+                    android:textStyle="bold"></TextView>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="366dp"
+            android:layout_height="36dp"
+            android:layout_marginHorizontal="4dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+
+            <EditText
+                android:id="@+id/Edt_IPServidor"
+                android:layout_width="289dp"
+                android:layout_height="35dp"
+                android:gravity="center"
+                android:hint="Escribe nueva IP y Puerto"
+                android:inputType="textPersonName"
+                android:textSize="12dp" />
+
+
+            <LinearLayout
+                android:layout_width="75dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/Btn_Confirmar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ovalo"
+                    android:onClick="onClick"
+                    android:text="Confirmar"
+                    android:textSize="12dp"></Button>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="375dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="Botones DialogFlow "
+            android:textColor="#000000"
+            android:textSize="18dp"
+            android:textStyle="bold"></TextView>
+
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
     <VideoView
         android:id="@+id/videoView"
-        android:layout_width="287dp"
-        android:layout_height="264dp"
-        android:layout_weight="1" />
+        android:layout_marginTop="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="278dp"
+        android:visibility="visible" />
 
     <Button
-
-        android:id="@+id/PlayButton"
+        android:id="@+id/btnConnect"
+        android:layout_marginTop="100dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Play"></Button>
+        android:text="Conectar al WebSocket"
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/btnSend"
+        android:layout_marginTop="20dp"
+        android:layout_width="137dp"
+        android:layout_height="41dp"
+        android:text="start Video"
+        android:visibility="visible" />
+
 </LinearLayout>
