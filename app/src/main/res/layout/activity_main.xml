@@ -142,6 +142,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Conectar al WebSocket"
+        android:background="@drawable/ovalo"
         android:visibility="visible" />
 
     <Button
@@ -150,6 +151,7 @@
         android:layout_width="137dp"
         android:layout_height="41dp"
         android:text="start Video"
+        android:background="@drawable/ovalo"
         android:visibility="visible" />
 
 </LinearLayout>
