@@ -11,6 +11,7 @@
 
     <Button
         android:id="@+id/Btn_On_Off"
+        android:visibility="gone"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="36dp"
@@ -128,13 +129,17 @@
 
     </LinearLayout>
 
-
+    <Button
+        android:id="@+id/btnSend"
+        android:background="@drawable/carafelizlibot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible" />
     <VideoView
         android:id="@+id/videoView"
-        android:layout_marginTop="100dp"
         android:layout_width="match_parent"
-        android:layout_height="278dp"
-        android:visibility="visible" />
+        android:layout_height="match_parent"
+       />
 
     <Button
         android:id="@+id/btnConnect"
@@ -143,15 +148,8 @@
         android:layout_height="wrap_content"
         android:text="Conectar al Socket"
         android:background="@drawable/ovalo"
-        android:visibility="visible" />
+        android:visibility="gone" />
 
-    <Button
-        android:id="@+id/btnSend"
-        android:layout_marginTop="20dp"
-        android:layout_width="137dp"
-        android:layout_height="41dp"
-        android:text="start Video"
-        android:background="@drawable/ovalo"
-        android:visibility="visible" />
+
 
 </LinearLayout>

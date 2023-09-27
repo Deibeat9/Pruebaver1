@@ -11,8 +11,10 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -70,9 +72,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnSend.setVisibility(View.GONE);
                 Toast.makeText(MainActivity.this, "reproducirVideo();", Toast.LENGTH_SHORT).show();
                 reproducirVideo();
             }
@@ -136,9 +140,13 @@ public class MainActivity extends AppCompatActivity {
         videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
+                videoView.setVisibility(View.GONE);
+                btnSend.setVisibility(View.VISIBLE);
                 // Reproducción del video completada
             }
         });
+        Toast.makeText(MainActivity.this, " connectToServer();", Toast.LENGTH_SHORT).show();
+        connectToServer();
 
 
 
@@ -182,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    socket = new Socket("192.168.1.24", 8766); // Reemplaza con la dirección y puerto del servidor
+                    socket = new Socket("192.168.100.138", 8766); // Reemplaza con la dirección y puerto del servidor
                     // Realiza cualquier tarea adicional de conexión si es necesario
                     // Envía el texto "start_video" al servidor
 
